@@ -1,0 +1,18 @@
+---
+resources:
+  - name: resource-cicd
+    type: git
+    source:
+      uri: https://github.com/cnruby/cicd.git
+      branch: master
+
+jobs:
+  - name: job-hello-shell
+    public: true
+    plan:
+      - get: resource-cicd
+        trigger: true
+      - task: hello-shell
+        file: resource-cicd/shell/task_show.yml
+
+# fly -t tutorial set-pipeline -c pipeline.yml -p hello-shell

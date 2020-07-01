@@ -1,0 +1,12 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: rikorose/gcc-cmake}
+
+inputs:
+  - name: resource-cicd
+
+run:
+  path: resource-cicd/shell/task-scripts/task_show.sh

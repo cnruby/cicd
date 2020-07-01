@@ -1,0 +1,18 @@
+---
+resources:
+  - name: resource-cicd
+    type: git
+    source:
+      uri: https://github.com/cnruby/cicd.git
+      branch: master
+
+jobs:
+  - name: job-hello-apache
+    public: true
+    plan:
+      - get: resource-cicd
+        trigger: true
+      - task: hello-apache
+        file: resource-cicd/hello/task_apache.yml
+
+# fly -t tutorial set-pipeline -c pipeline.yml -p hello-apache
